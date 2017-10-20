@@ -20,7 +20,7 @@
             <br>
             <label>Select Sorting</label>
             <select name = "sort">
-                <option value = "">Select sorting method</option>
+                <option value = "deviceName">Select sorting method</option>
                 <option value = "deviceName">Sort by Name</option>
                 <option value = "price">Sort by Price</option>
             </select>
@@ -58,10 +58,12 @@
             $av = $_GET['av'];
             $sql .= " AND status = '{$av}' ";
         }
-        if(!empty($_GET['sort'])){
-            $sort = $_GET['sort'];
-            $sql .= "ORDER BY {$sort} ASC";
+        if($_GET['sort'] == "price"){
+            $sort = "price";
+        }else{
+            $sort = "deviceName";
         }
+        $sql .= " ORDER BY {$sort} ASC";
 
         
         echo $sql;
